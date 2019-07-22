@@ -4,13 +4,17 @@ import {
 	DiagramModel,
 	DefaultNodeModel,
 	LinkModel,
+	DefaultPortModel,
 	DiagramWidget,
 	DefaultLinkModel
 } from "storm-react-diagrams";
 import * as React from "react";
 
-import "./test.scss";
+import "../test.scss";
 require("storm-react-diagrams/src/sass/main.scss");
+
+// import the custom models
+import { CustomNodeFactory } from "./CustomNodeFactory";
 
 export default () => {
 	//1) setup the diagram engine

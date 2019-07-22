@@ -3,6 +3,13 @@
   height: 100vh;
   width: 100vw;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+
+}
+.seperator{
+  width: 75%;
+  height: 50%;
+  border: 1px solid red;
 }
