@@ -11,7 +11,7 @@ function App() {
         <SimpleExample/>
       </div>
         <div className="seperator">
-        <CustomExample/>
+        {/* <CustomExample/> */}
         </div>
     </div>
   );
