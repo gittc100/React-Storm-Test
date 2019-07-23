@@ -10,7 +10,7 @@ import {
 
 import * as React from "react";
 
-import "./test.scss";
+import "../test.scss";
 require("storm-react-diagrams/src/sass/main.scss");
 
 export default () => {
