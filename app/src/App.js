@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SimpleExample from "./components/simpleExample";
-import CustomExample from "./components/custom/CustomExampleIndex";
+// import CustomExample from "./components/custom2/index.tsx";
 
 function App() {
   return (

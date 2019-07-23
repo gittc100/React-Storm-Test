@@ -6,7 +6,8 @@ import {
 	LinkModel,
 	DiagramWidget,
 	DefaultLinkModel
-} from "storm-react-diagrams";
+} from "@projectstorm/react-diagrams";
+
 import * as React from "react";
 
 import "./test.scss";
