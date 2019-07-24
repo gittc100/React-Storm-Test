@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import SimpleExample from "./components/DefaultNode/simpleExample";
 // import CustomExample from "./components/CustomNode/customEG";
-import CustomExample from "./main";
+import CustomExample from "./main.js";
 
 function App() {
   return (

@@ -7,7 +7,7 @@ export class JSCustomNodeModel extends NodeModel {
 
 	constructor(options = {}) {
 		super('js-custom-node');
-		this.color = options.color || {options: 'red'};
+		// this.color = options.color || {options: 'red'};
 
 		// setup an in and out port
 		this.addPort(new DefaultPortModel(true,"in"));
@@ -18,7 +18,7 @@ export class JSCustomNodeModel extends NodeModel {
 	serialize() {
 		return {
 			...super.serialize(),
-			color: this.options.color
+			// color: this.options.color
 		}
 	}
 
