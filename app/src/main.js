@@ -32,13 +32,19 @@ import { defer } from "q";
   // now create two nodes of each type, and connect them
 
   const node1 = new JSCustomNodeModel();
+  node1.nameNode("Node 1");
+  node1.provideDescription("Description node 2");
   node1.setPosition(50, 50);
 
   const node2 = new JSCustomNodeModel();
+  node2.nameNode("Node 2");
+  node2.provideDescription("Description node 2");
   node2.setPosition(30, 500);
 
   const node3 = new JSCustomNodeModel();
-  node2.setPosition(1000, 1000);
+  node3.nameNode("Node 3");
+  node3.provideDescription("Description node 3");
+  node3.setPosition(1000, 1000);
 
   // 3-C) link the 2 nodes together
   const link1 = new DefaultLinkModel();

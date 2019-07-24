@@ -1,5 +1,9 @@
 import * as React from "react";
-import {DiagramEngine, DiagramWidget} from "@projectstorm/react-diagrams";
+import {
+	DiagramEngine
+	// ,DiagramWidget
+} from "@projectstorm/react-diagrams";
+import {DiagramWidget} from "./Diagram/DiagramWidget";
 
 export interface BodyWidgetProps {
 	engine: DiagramEngine;
