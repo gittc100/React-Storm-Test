@@ -4,13 +4,15 @@ import {PortWidget} from "@projectstorm/react-diagrams";
 export class JSCustomNodeWidget extends React.Component {
 
 	constructor(props) {
+		console.log('props');
+		console.log(props);
 		super(props);
 		this.ESCAPE_KEY = 27;
 		this.ENTER_KEY = 13;
 		this.state = {
-		  editText: props.name,
-		  editing: false
-		};
+		  editText: "",
+			editing: false,
+			};
 	  }
 
 	  componentDidMount(){
@@ -35,24 +37,20 @@ export class JSCustomNodeWidget extends React.Component {
 		if (val) {
 			this.setState({
 			  editText: val,
-			  editing: 'hidden',
+				// editing: 'hidden'
+				editing: !this.state.editing
 			});
-		  } 
-		  this.props.node.name = this.state.editText;
+		} 
+		this.props.node.name = this.state.editText;
 		//  this.props.diagramEngine.repaintCanvas()
 		 console.log("this", this.props.node);
 		}
 	  
 	  handleKeyDown (event) {
-		if (event.which === this.ESCAPE_KEY) {
-			this.setState({
-			  editText: this.props.name,
-			  editing: false
-			});
-		} else if (event.which === this.ENTER_KEY) {
+		if (event.which === this.ENTER_KEY) {
 			this.handleSubmit(event);
 		}
-	  }
+	}
 
 	render() {
 		return (
@@ -61,14 +59,14 @@ export class JSCustomNodeWidget extends React.Component {
 					<div className="line-in">
 						<PortWidget node={this.props.node} name="in" />
 					</div>
-					{/* <h1> */}
-					{/* </h1> */}
-					<label className={this.state.editing ? 'hidden' : ''} onDoubleClick={this.handleEdit()}>{this.state.editText}</label>
+					<h1 
+						className={this.state.editing ? 'hidden' : ''} onDoubleClick={this.handleEdit()}>{this.state.editText}</h1>
 					<input 
+					placeholder="Enter something..."
 					className={this.state.editing ? '' : 'hidden'} 
 					value={this.state.editText} 
 					onChange={this.handleChange.bind(this)} 
-					onBlur={this.handleSubmit.bind(this)}
+					// onBlur={this.handleSubmit.bind(this)}
 					onKeyDown={this.handleKeyDown.bind(this)}
 					/>
 					
