@@ -64,6 +64,11 @@ html, body, #application {
 	font-family: 'LiberationSansRegular';
 }
 
+.custom-node-screen textarea {
+	padding: 15px;
+	outline: 10px solid red;
+}
+
 .custom-node-submenus {
 	display: flex;
 	flex-direction: row;
