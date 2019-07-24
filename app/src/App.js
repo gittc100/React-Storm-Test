@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import SimpleExample from "./components/DefaultNode/simpleExample";
-import CustomExample from "./components/CustomNode/customEG.js";
+// import CustomExample from "./components/CustomNode/customEG";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <SimpleExample/>
       </div>
         <div className="seperator">
-        <CustomExample />
+        {/* <CustomExample /> */}
         </div>
     </div>
   );
