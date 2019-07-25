@@ -1,4 +1,4 @@
-import {DefaultPortModel, NodeModel, DiagramEngine} from "@projectstorm/react-diagrams";
+import {DefaultPortModel, NodeModel, DiagramEngine, Toolkit} from "@projectstorm/react-diagrams";
 import * as _ from "lodash";
 /**
  * Example of a custom model using pure javascript
@@ -15,7 +15,6 @@ export class JSCustomNodeModel extends NodeModel {
 
 		// setup an in and out port
 		this.addPort(new DefaultPortModel(true,"in"));
-		this.addPort(new DefaultPortModel(false,"out"));
 	}
 
 	// addOutPort(label: string) {
@@ -54,5 +53,9 @@ export class JSCustomNodeModel extends NodeModel {
 
 	provideDescription(description){
 		this.description = description;
+	}
+
+	addOutPort(label) {
+		return this.addPort(new DefaultPortModel(false, Toolkit.UID(), label));
 	}
 }

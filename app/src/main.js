@@ -45,14 +45,15 @@ import { defer } from "q";
   node3.nameNode("Node 3");
   node3.provideDescription("Description node 3");
   node3.setPosition(1000, 1000);
+  
 
   // 3-C) link the 2 nodes together
   const link1 = new DefaultLinkModel();
-  link1.setSourcePort(node1.getPort("out"));
+  // link1.setSourcePort(node1.getPort("out"));
   link1.setTargetPort(node2.getPort("in"));
 
   // 4) add the models to the root graph
-  model.addAll(node1, node2, node3, link1);
+  model.addAll(node1, node2, node3);
 
 	
   // install the model into the engine

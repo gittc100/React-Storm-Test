@@ -1,11 +1,12 @@
 import * as React from "react";
 import {PortWidget} from "@projectstorm/react-diagrams";
+import * as _ from "lodash";
 
 export class JSCustomNodeWidget extends React.Component {
 
 	constructor(props) {
-		console.log('props');
-		console.log(props);
+		// console.log('props');
+		// console.log(props);
 		super(props);
 		this.ESCAPE_KEY = 27;
 		this.ENTER_KEY = 13;
@@ -14,6 +15,7 @@ export class JSCustomNodeWidget extends React.Component {
 			title: "",
 			editing: false,
 			editingDesc: false,
+			portsObj: {}
 			};
 	  }
 
@@ -22,7 +24,7 @@ export class JSCustomNodeWidget extends React.Component {
 			  ...this.state,
 				title: this.props.node.name,
 				description: this.props.node.description,
-		  });
+			});
 	  }
 	
 	  handleEdit (name) {
@@ -64,7 +66,7 @@ export class JSCustomNodeWidget extends React.Component {
 		} 
 		this.props.node.name = this.state[event.target.name];
 		//  this.props.diagramEngine.repaintCanvas()
-		 console.log("this", this.props.node);
+		//  console.log("this", this.props.node);
 		}
 	  
 	  handleKeyDown (event) {
@@ -73,7 +75,38 @@ export class JSCustomNodeWidget extends React.Component {
 		}
 	}
 
+	addSubMenu = () => {
+		this.props.node.addOutPort("Edit Menu Option..");
+	}
+
+	forIN = () => {
+		console.log("forin");
+		let obj = this.props.node.ports;
+		if(this.state.portsObj !== obj){
+			this.setState({
+				portsObj: obj
+			})
+			let nameNumber = 0
+			for(let key in obj ){
+				console.log("obj[key]",obj[key]);
+				if(obj[key].in === false){
+					return(<div className="custom-node-submenus">
+					<h2>01. Menu Option 01</h2>
+					<div className="line-out">
+						<PortWidget node={this.props.node} name={`out-${nameNumber.stringify()}`} />
+					</div>
+					</div>);
+				}
+				nameNumber++;
+			}
+			this.forceUpdate();
+		}
+	}
+
 	render() {
+
+		// console.log("props",this.props);
+		console.log("ports",this.props.node);
 		return (
 			<div className="custom-node">
 				<div className="custom-node-title">
@@ -109,20 +142,19 @@ export class JSCustomNodeWidget extends React.Component {
 					onKeyDown={this.handleKeyDown.bind(this)}
 					/>
 				</div>
-        
-				<div className="custom-node-submenus">
-				<h2>01. Menu Option 01</h2>
-				<div className="line-out">
-					<PortWidget node={this.props.node} name="out" />
+
+        <div>
+				{
+					this.forIN()
+				}
 				</div>
-        </div>
 
 				<div className="custom-node-addMenuOption">
 					<h2>Add menu option...</h2>
-					<img 
+					<img className="button-add-port"
 					onClick={()=>{
-						{/* addSubMenu(); */}
-						return;
+						console.log("clicked");
+						this.addSubMenu();
 					}} 
 					src="https://image.flaticon.com/icons/svg/32/32339.svg" 
 					alt="plus sign" 
@@ -133,3 +165,16 @@ export class JSCustomNodeWidget extends React.Component {
 		);
 	}
 }
+
+
+
+// this.props.node.ports_.forIn(item=> {
+// 	if(item.in === false){
+// 		return(<div className="custom-node-submenus">
+// 		<h2>01. Menu Option 01</h2>
+// 		<div className="line-out">
+// 			<PortWidget node={this.props.node} name="out" />
+// 		</div>
+// 		</div>);
+// 	}
+// })

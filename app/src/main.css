@@ -137,6 +137,7 @@ html, body, #application {
 .custom-node-addMenuOption img {
 	width: 30px;
 	filter: invert(100%);
+	cursor: pointer;
 }
 
 .hidden{
