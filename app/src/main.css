@@ -54,6 +54,9 @@ html, body, #application {
 }
 
 .custom-node-screen {
+	display: flex;
+  align-content: center;
+	justify-content: center;
 	color: #999999;
 	border-left: 2px solid #0c7cba;
 	border-right: 2px solid #0c7cba;
@@ -65,8 +68,18 @@ html, body, #application {
 }
 
 .custom-node-screen textarea {
-	padding: 15px;
-	outline: 10px solid red;
+	align-self: center;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	width: 400px;
+	height: 260px;
+	outline: 5;
+	box-shadow: none;
+	border: none;
+	box-sizing: content-box;
+	background-color: transparent;
+	overflow-y: hidden;
+	resize: none;
+	font-size: 210%;
 }
 
 .custom-node-submenus {

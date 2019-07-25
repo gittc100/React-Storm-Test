@@ -34,7 +34,7 @@ import { defer } from "q";
   const node1 = new JSCustomNodeModel();
   node1.nameNode("Node 1");
   node1.provideDescription("Description node 2");
-  node1.setPosition(150, 150);
+  node1.setPosition(150, 300);
 
   const node2 = new JSCustomNodeModel();
   node2.nameNode("Node 2");
