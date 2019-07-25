@@ -24,7 +24,7 @@ export class JSCustomNodeWidget extends React.Component {
       ...this.state,
       nodeTitle: this.props.node.name,
 			description: this.props.node.description,
-			subMenuTitle: this.props.node.subMenuTitle
+			// subMenuTitle: this.props.node.subMenuTitle
     });
   }
 
@@ -37,9 +37,12 @@ export class JSCustomNodeWidget extends React.Component {
       this.setState({
         editing: !this.state.editing
       });
-    } else if (name === "subMenuTitle") {
+    } else {
+      let x = name;
+      x.slice(0,-1);
       this.setState({
-        editingSub: !this.state.editingSub
+        ...this.state,
+        [x]: !this.state[x]
       });
     }
   }
@@ -65,11 +68,13 @@ export class JSCustomNodeWidget extends React.Component {
           [event.target.name]: val,
           editing: !this.state.editing
         });
-      } else if (event.target.name === "subMenuTitle") {
+      } else {
+        let x = event.target.name;
+        x.slice(0,-1);
         this.setState({
           ...this.state,
           [event.target.name]: val,
-          editingSub: !this.state.editingSub
+          [x]: !this.state[x]
         });
       }
     }
@@ -93,25 +98,25 @@ export class JSCustomNodeWidget extends React.Component {
     for (let key in obj) {
       if (obj[key].in === false) {
         obj[key].editingSub = false;
-        let mod = key + "a";
-        console.log("mod", mod);
-        this.setState({
-          [key]: false,
-          [mod]: mod
-        });
-        console.log(obj[key]);
-        console.log(key);
+				let mod = key + "a";
+				console.log('# # # # # # # # # LOOP START # # # # # # # # # ');
+				console.log('key', key);
+				console.log('mod', mod);
+        // this.setState({
+        //   [key]: false,
+        //   [mod]: obj[key].label
+        // });
         menus.push(
           <div className="custom-node-submenus">
             <h2
-              className={this.state.editingSub ? "hidden" : ""}
-              onDoubleClick={() => this.handleEdit("subMenuTitle")}>
+              className={this.state[key] ? "hidden" : ""}
+              onDoubleClick={() => this.handleEdit(mod)}>
               {obj[key].label}
             </h2>
             <input
-              name="subMenuTitle"
+              name={mod}
               placeholder="Enter something..."
-              className={this.state.editingSub ? "" : "hidden"}
+              className={this.state[key] ? "" : "hidden"}
               value={this.state.subMenuTitle}
               onChange={this.handleChange.bind(this)}
               onKeyDown={this.handleKeyDown.bind(this)}
