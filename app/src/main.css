@@ -33,7 +33,7 @@ html, body, #application {
 	flex-direction: column;
 }
 
-.custom-node-title {
+.custom-node-nodeTitle {
 	display: flex;
 	flex-direction: row;
 	color: white;
@@ -49,7 +49,7 @@ html, body, #application {
 	font-family: 'LiberationSansRegular';
 }
 
-.custom-node-title h1 {
+.custom-node-nodeTitle h1 {
 	padding-left: 15px;
 }
 
@@ -150,6 +150,7 @@ html, body, #application {
 .custom-node-addMenuOption img {
 	width: 30px;
 	filter: invert(100%);
+	cursor: pointer;
 }
 
 .hidden{
