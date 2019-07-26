@@ -38,9 +38,6 @@ export class JSCustomNodeWidget extends React.Component {
     } else {
       let mod = name;
       let id = mod.slice(0,-1);
-      console.log('hanf=dleedit');
-      console.log('id', id);
-      console.log('mod', mod);
       this.setState({
         ...this.state,
         [id]: !this.state[id]
@@ -75,9 +72,6 @@ export class JSCustomNodeWidget extends React.Component {
       } else {
         let mod = event.target.name;
         let id = mod.slice(0,-1);
-        console.log('handle submit');
-        console.log('id', id);
-        console.log('mod', mod);
         this.setState({
           ...this.state,
           [event.target.name]: val,
@@ -114,13 +108,8 @@ export class JSCustomNodeWidget extends React.Component {
 		let menus = [];
     for (let key in obj) {
       if (obj[key].in === false) {
-				// obj[key].editingSub = false;
 				let id = obj[key].id;
 				let mod = id + "a";
-				console.log('# # # # # # # # # LOOP START # # # # # # # # # ');
-				console.log('obj', obj);
-				console.log('key', id);
-        console.log('mod', mod);
         if(this.state[id] === undefined){
           this.setState({
             ...this.state,
@@ -188,7 +177,6 @@ export class JSCustomNodeWidget extends React.Component {
           <img
             className="button-add-port"
             onClick={() => {
-              // console.log("clicked");
               this.addSubMenu();
             }}
             src="https://image.flaticon.com/icons/svg/32/32339.svg"
