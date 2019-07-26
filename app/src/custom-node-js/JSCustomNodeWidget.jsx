@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PortWidget } from "@projectstorm/react-diagrams";
+import { PortWidget, PortModel } from "@projectstorm/react-diagrams";
 
 // import NodeScreen from "./JSCustomNode_Screen";
 import TrashCan from "./icons/trash.png";
@@ -98,8 +98,10 @@ export class JSCustomNodeWidget extends React.Component {
     this.forceUpdate();
   };
 
-  deletePort = (port) =>{
-    this.props.node.removePort(port);
+  deletePortAndLinks = (port) =>{
+    console.log("this.props",this);
+    this.props.node.removePortAndLinks(port);
+    // this.repaintCanvas();
     this.forceUpdate();
   }
 
@@ -132,7 +134,7 @@ export class JSCustomNodeWidget extends React.Component {
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
             />
-            <div onClick={()=>this.deletePort(obj[key])}>
+            <div onClick={()=>this.deletePortAndLinks(obj[key])}>
               <img src={TrashCan} alt="trash icon"/>
             </div>
             <div className="line-out">

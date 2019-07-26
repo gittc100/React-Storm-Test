@@ -58,4 +58,15 @@ export class JSCustomNodeModel extends NodeModel {
 	addOutPort(label) {
 		return this.addPort(new DefaultPortModel(false, Toolkit.UID(), label));
 	}
+	
+	removePortAndLinks(port) {
+		//clear the parent node reference
+		if (this.ports[port.name]) {
+			_.forEach(port.getLinks(), link => {
+				link.remove();
+			});
+			this.ports[port.name].setParent(null);
+			delete this.ports[port.name];
+		}
+	}
 }

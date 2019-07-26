@@ -74,7 +74,9 @@ import { defer } from "q";
 class CustomExample extends React.Component {
 
   createNode = () => {
-		let newItem = new JSCustomNodeModel();
+    let newItem = new JSCustomNodeModel();
+    newItem.nameNode("Enter Node Name...");
+    newItem.provideDescription("Enter Description...");
 		newItem.setPosition(0,0);
 		cerealBox.addNode(newItem);
 		this.forceUpdate();
