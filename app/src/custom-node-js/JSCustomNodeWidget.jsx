@@ -11,11 +11,11 @@ export class JSCustomNodeWidget extends React.Component {
     this.state = {
       description: "",
       nodeTitle: "",
-      subMenuTitle: "",
+      // subMenuTitle: "",
       editing: false,
       editingDesc: false,
-      editingSub: false,
-      portsObj: {}
+      // editingSub: false,
+      // portsObj: {}
     };
   }
 
@@ -23,37 +23,42 @@ export class JSCustomNodeWidget extends React.Component {
     this.setState({
       ...this.state,
       nodeTitle: this.props.node.name,
-			description: this.props.node.description,
-			// subMenuTitle: this.props.node.subMenuTitle
+			description: this.props.node.description
     });
   }
 
-  handleEdit(name) {
+  handleEdit = (name) => {
     if (name === "description") {
       this.setState({
+        ...this.state,
         editingDesc: !this.state.editingDesc
       });
     } else if (name === "nodeTitle") {
       this.setState({
+        ...this.state,
         editing: !this.state.editing
       });
     } else {
-      let x = name;
-      x.slice(0,-1);
+      let mod = name;
+      let id = mod.slice(0,-1);
+      console.log('hanf=dleedit');
+      console.log('id', id);
+      console.log('mod', mod);
       this.setState({
         ...this.state,
-        [x]: !this.state[x]
+        [id]: !this.state[id]
       });
     }
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
+      ...this.state,
       [e.target.name]: e.target.value
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     var val = this.state[event.target.name];
     if (val) {
       if (event.target.name === "description") {
@@ -62,26 +67,30 @@ export class JSCustomNodeWidget extends React.Component {
           [event.target.name]: val,
           editingDesc: !this.state.editingDesc
         });
+        this.props.node.description = this.state[event.target.name];
       } else if (event.target.name === "nodeTitle") {
         this.setState({
           ...this.state,
           [event.target.name]: val,
           editing: !this.state.editing
         });
+        this.props.node.name = this.state[event.target.name];
       } else {
-        let x = event.target.name;
-        x.slice(0,-1);
+        let mod = event.target.name;
+        let id = mod.slice(0,-1);
+        console.log('handle submit');
+        console.log('id', id);
+        console.log('mod', mod);
         this.setState({
           ...this.state,
           [event.target.name]: val,
-          [x]: !this.state[x]
+          [id]: !this.state[id]
         });
       }
     }
-		this.props.node.name = this.state[event.target.name];
   }
 
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     if (event.which === this.ENTER_KEY) {
       this.handleSubmit(event);
     }
@@ -97,29 +106,34 @@ export class JSCustomNodeWidget extends React.Component {
 		let menus = [];
     for (let key in obj) {
       if (obj[key].in === false) {
-        obj[key].editingSub = false;
-				let mod = key + "a";
+				// obj[key].editingSub = false;
+				let id = obj[key].id;
+				let mod = id + "a";
 				console.log('# # # # # # # # # LOOP START # # # # # # # # # ');
-				console.log('key', key);
-				console.log('mod', mod);
-        // this.setState({
-        //   [key]: false,
-        //   [mod]: obj[key].label
-        // });
+				console.log('obj', obj);
+				console.log('key', id);
+        console.log('mod', mod);
+        if(this.state[id] === undefined){
+          this.setState({
+            ...this.state,
+            [id]: false,
+            [mod]: obj[key].label
+          });
+        }
         menus.push(
-          <div className="custom-node-submenus">
+          <div key={key} className="custom-node-submenus">
             <h2
-              className={this.state[key] ? "hidden" : ""}
-              onDoubleClick={() => this.handleEdit(mod)}>
-              {obj[key].label}
+              className={this.state[id] ? "hidden" : ""}
+              onDoubleClick={()=>this.handleEdit(mod)}>
+              {this.state[mod]}
             </h2>
             <input
               name={mod}
               placeholder="Enter something..."
-              className={this.state[key] ? "" : "hidden"}
-              value={this.state.subMenuTitle}
-              onChange={this.handleChange.bind(this)}
-              onKeyDown={this.handleKeyDown.bind(this)}
+              className={this.state[id] ? "" : "hidden"}
+              value={this.state[mod]}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
             />
 
             <div className="line-out">
@@ -150,9 +164,9 @@ export class JSCustomNodeWidget extends React.Component {
             placeholder="Enter something..."
             className={this.state.editing ? "" : "hidden"}
             value={this.state.nodeTitle}
-            onChange={this.handleChange.bind(this)}
+            onChange={this.handleChange}
             // onBlur={this.handleSubmit.bind(this)}
-            onKeyDown={this.handleKeyDown.bind(this)}
+            onKeyDown={this.handleKeyDown}
           />
         </div>
 

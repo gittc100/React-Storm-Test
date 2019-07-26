@@ -6,6 +6,7 @@
   "author": "Thomas Claydon <tomclaydon102@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "create-react-app": "^3.0.1"
+    "create-react-app": "^3.0.1",
+    "sass": "^1.22.7"
   }
 }
