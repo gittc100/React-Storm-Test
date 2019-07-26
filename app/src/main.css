@@ -101,6 +101,11 @@ html, body, #application {
 	font-style: italic;
 	font-family: 'LiberationSansRegular';
 }
+
+.custom-node-submenus img {
+	max-width: 25px;
+}
+
 .line-in {
 	display: flex;
   align-self: center;

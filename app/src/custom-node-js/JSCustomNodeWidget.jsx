@@ -2,7 +2,7 @@ import * as React from "react";
 import { PortWidget } from "@projectstorm/react-diagrams";
 
 import NodeScreen from "./JSCustomNode_Screen";
-
+import TrashCan from "./icons/trash.png";
 export class JSCustomNodeWidget extends React.Component {
   constructor(props) {
     super(props);
@@ -11,11 +11,8 @@ export class JSCustomNodeWidget extends React.Component {
     this.state = {
       description: "",
       nodeTitle: "",
-      // subMenuTitle: "",
       editing: false,
       editingDesc: false,
-      // editingSub: false,
-      // portsObj: {}
     };
   }
 
@@ -86,6 +83,12 @@ export class JSCustomNodeWidget extends React.Component {
           [event.target.name]: val,
           [id]: !this.state[id]
         });
+        let obj = this.props.node.ports;
+        for (let key in obj) {
+          if (obj[key].id === id) {
+            obj[key].label = this.state[event.target.name];
+          }
+        }
       }
     }
   }
@@ -100,6 +103,11 @@ export class JSCustomNodeWidget extends React.Component {
     this.props.node.addOutPort("Edit Menu Option..");
     this.forceUpdate();
   };
+
+  deletePort = (port) =>{
+    this.props.node.removePort(port);
+    this.forceUpdate();
+  }
 
   subMenuGenerator = () => {
 		let obj = this.props.node.ports;
@@ -135,7 +143,9 @@ export class JSCustomNodeWidget extends React.Component {
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
             />
-
+            <div onClick={()=>this.deletePort(obj[key])}>
+              <img src={TrashCan} alt="trash icon"/>
+            </div>
             <div className="line-out">
               <PortWidget node={this.props.node} name={obj[key].name} />
             </div>
