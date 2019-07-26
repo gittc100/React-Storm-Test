@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PortWidget } from "@projectstorm/react-diagrams";
 
-import NodeScreen from "./JSCustomNode_Screen";
+// import NodeScreen from "./JSCustomNode_Screen";
 import TrashCan from "./icons/trash.png";
 export class JSCustomNodeWidget extends React.Component {
   constructor(props) {
@@ -169,7 +169,26 @@ export class JSCustomNodeWidget extends React.Component {
           />
         </div>
 
-        <NodeScreen />
+        {/* <NodeScreen /> */}
+        <div className="custom-node-screen">
+          <p
+            className={this.state.editingDesc ? "hidden" : ""}
+            onDoubleClick={() => this.handleEdit("description")}
+          >
+            {this.state.description}
+          </p>
+          <textarea
+            name="description"
+            placeholder="Enter something..."
+            wrap="hard"
+            maxLength="182"
+            className={this.state.editingDesc ? "" : "hidden"}
+            value={this.state.description}
+            onChange={this.handleChange}
+            // // onBlur={this.handleSubmit.bind(this)}
+            onKeyDown={this.handleKeyDown}
+          />
+        </div>
 
         <div>{this.subMenuGenerator()}</div>
         <div className="custom-node-addMenuOption">
