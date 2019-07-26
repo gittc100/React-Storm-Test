@@ -99,9 +99,24 @@ export class JSCustomNodeWidget extends React.Component {
   };
 
   deletePortAndLinks = (port) =>{
-    console.log("this.props",this);
+    console.log("port.links",this);
     this.props.node.removePortAndLinks(port);
-    // this.repaintCanvas();
+    // this.props.node.serialize();
+
+    // let ports = this.props.node.ports;
+    // console.log("ports",ports);
+    // for (let port in ports) {
+    //   let links = port.links;
+    //   for (let link in links) {
+    //     let points = link.points;
+    //     for (let point in points) {
+    //       let x = point.getX();
+    //       let y = point.getY();
+    //       point.updateLocation({ x: x, y: y });
+    //     }
+    //   }
+    // }
+
     this.forceUpdate();
   }
 
