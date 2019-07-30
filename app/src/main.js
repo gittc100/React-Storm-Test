@@ -18,12 +18,18 @@ import { defer } from "q";
   // const engine = createEngine();
 
   //1) setup the diagram engine
-  var engine = new DiagramEngine();
-  engine.installDefaultFactories();
+  // var engine = new DiagramEngine();
+  // engine.installDefaultFactories();
 
   // register the two engines
-  engine.registerNodeFactory(new JSCustomNodeFactory());
+  // engine.registerNodeFactory(new JSCustomNodeFactory());
   // engine.registerNodeFactory(new TSCustomNodeFactory());
+  // create an instance of the engine
+const engine = createEngine();
+
+// register the two engines
+engine.getNodeFactories().registerFactory(new JSCustomNodeFactory());
+
 
   // create a diagram model
   const model = new DiagramModel();
@@ -98,6 +104,13 @@ class CustomExample extends React.Component {
 				}}
 				>
 					Create Node +
+				</button>
+        <button
+        onClick={() => {
+					engine.recalculatePortsVisually();
+				}}
+				>
+					recalculate
 				</button>
 				<div className="bodywidget-container">
 					<BodyWidget engine={engine} />

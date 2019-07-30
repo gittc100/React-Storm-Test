@@ -22,6 +22,7 @@ export class JSCustomNodeWidget extends React.Component {
       nodeTitle: this.props.node.name,
 			description: this.props.node.description
     });
+    console.log("this",this);
   }
 
   handleEdit = (name) => {
@@ -99,7 +100,7 @@ export class JSCustomNodeWidget extends React.Component {
   };
 
   deletePortAndLinks = (port) =>{
-    console.log("port.links",this);
+    console.log("this.props.node.ports",this.props.node.ports);
     this.props.node.removePortAndLinks(port);
     // this.props.node.serialize();
 
@@ -116,7 +117,7 @@ export class JSCustomNodeWidget extends React.Component {
     //     }
     //   }
     // }
-
+    // this.recalculatePortsVisually();
     this.forceUpdate();
   }
 
