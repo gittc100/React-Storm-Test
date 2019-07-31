@@ -7,6 +7,7 @@ import createEngine, {
 	DiagramEngine,
 	BaseModel
 } from "@projectstorm/react-diagrams";
+import { DefaultLinkSegmentWidget } from '@projectstorm/react-diagrams-defaults';
 import { JSCustomNodeFactory } from "./custom-node-js/JSCustomNodeFactory";
 // import { TSCustomNodeFactory } from "./custom-node-ts/TSCustomNodeFactory";
 import { JSCustomNodeModel } from "./custom-node-js/JSCustomNodeModel";
