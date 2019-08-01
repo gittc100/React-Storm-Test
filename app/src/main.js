@@ -21,12 +21,12 @@ import { BodyWidget } from "./BodyWidget";
   //####################################################
   // now create two nodes of each type, and connect them
 
-  const node1 = new JSCustomNodeModel({ color: 'rgb(192,255,0)' });
+  const node1 = new JSCustomNodeModel();
   // node1.nameNode("Node 1");
   // node1.provideDescription("Description node 2");
   node1.setPosition(150, 300);
 
-  const node2 = new JSCustomNodeModel({ color: 'rgb(0,192,255)' });
+  const node2 = new JSCustomNodeModel();
   // node2.nameNode("Node 2");
   // node2.provideDescription("Description node 2");
   node2.setPosition(900, 150);

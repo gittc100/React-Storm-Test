@@ -28,9 +28,27 @@ html, body, #application {
 	height: 100%;
 }
 
+/*  */
+
+.ptag{
+	color: white;
+}
+
+.node {
+	display: flex;
+	flex-direction: column;
+	/* width: 200px; */
+	height: 200px;
+	background: green;
+}
+
+/*  */
+
 .custom-node {
 	display: flex;
 	flex-direction: column;
+	/* width: 200px; */
+	height: 200px;
 }
 
 .custom-node-nodeTitle {
