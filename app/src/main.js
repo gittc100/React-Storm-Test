@@ -31,21 +31,15 @@ import { BodyWidget } from "./BodyWidget";
   // node2.provideDescription("Description node 2");
   node2.setPosition(900, 150);
 
-  const node3 = new JSCustomNodeModel();
-  // node3.nameNode("Node 3");
-  // node3.provideDescription("Description node 3");
-  node3.setPosition(900, 900);
 
   // 3-C) link the 2 nodes together
   const link1 = new DefaultLinkModel();
-  // link1.setSourcePort(node1.getPort("out"));
+  link1.setSourcePort(node1.getPort("out"));
   link1.setTargetPort(node2.getPort("in"));
 
-  const link2 = new DefaultLinkModel();
-  link2.setTargetPort(node3.getPort("in"));
 
   // 4) add the models to the root graph
-  model.addAll(node1, node2, node3);
+  model.addAll(node1, node2, link1);
 
 	
   // install the model into the engine
