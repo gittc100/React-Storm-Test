@@ -1,30 +1,19 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+// import * as ReactDOM from "react-dom";
 import "./main.css";
 import createEngine, {
   DefaultLinkModel,
   DiagramModel,
-	DiagramEngine,
-	BaseModel
 } from "@projectstorm/react-diagrams";
-import { DefaultLinkSegmentWidget } from '@projectstorm/react-diagrams-defaults';
 import { JSCustomNodeFactory } from "./custom-node-js/JSCustomNodeFactory";
-// import { TSCustomNodeFactory } from "./custom-node-ts/TSCustomNodeFactory";
 import { JSCustomNodeModel } from "./custom-node-js/JSCustomNodeModel";
-// import {TSCustomNodeModel} from "./custom-node-ts/TSCustomNodeModel";
 import { BodyWidget } from "./BodyWidget";
-import { defer } from "q";
 
-	// create an instance of the engine
-  // const engine = createEngine();
-
-  //1) setup the diagram engine
-  var engine = new DiagramEngine();
-  engine.installDefaultFactories();
+  // create an instance of the engine
+  const engine = createEngine();
 
   // register the two engines
-  engine.registerNodeFactory(new JSCustomNodeFactory());
-  // engine.registerNodeFactory(new TSCustomNodeFactory());
+  engine.getNodeFactories().registerFactory(new JSCustomNodeFactory());
 
   // create a diagram model
   const model = new DiagramModel();
@@ -32,19 +21,19 @@ import { defer } from "q";
   //####################################################
   // now create two nodes of each type, and connect them
 
-  const node1 = new JSCustomNodeModel();
-  node1.nameNode("Node 1");
-  node1.provideDescription("Description node 2");
+  const node1 = new JSCustomNodeModel({ color: 'rgb(192,255,0)' });
+  // node1.nameNode("Node 1");
+  // node1.provideDescription("Description node 2");
   node1.setPosition(150, 300);
 
-  const node2 = new JSCustomNodeModel();
-  node2.nameNode("Node 2");
-  node2.provideDescription("Description node 2");
+  const node2 = new JSCustomNodeModel({ color: 'rgb(0,192,255)' });
+  // node2.nameNode("Node 2");
+  // node2.provideDescription("Description node 2");
   node2.setPosition(900, 150);
 
   const node3 = new JSCustomNodeModel();
-  node3.nameNode("Node 3");
-  node3.provideDescription("Description node 3");
+  // node3.nameNode("Node 3");
+  // node3.provideDescription("Description node 3");
   node3.setPosition(900, 900);
 
   // 3-C) link the 2 nodes together
