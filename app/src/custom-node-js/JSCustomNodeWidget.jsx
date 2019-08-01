@@ -7,7 +7,6 @@ import TrashCan from "./icons/trash.png";
 export class JSCustomNodeWidget extends React.Component {
 	constructor(props) {
     super(props);
-    // this.ESCAPE_KEY = 27;
     this.ENTER_KEY = 13;
     this.state = {
       description: "",
@@ -156,7 +155,7 @@ export class JSCustomNodeWidget extends React.Component {
               <img src={TrashCan} alt="trash icon"/>
             </div>
             <div className="line-out">
-							<PortWidget engine={this.props.engine} port={this.props.node.getPort('out')} />
+							<PortWidget engine={this.props.engine} port={this.props.node.getPort(obj[key].options.name)} />
             </div>
           </div>
         );
