@@ -4,6 +4,8 @@ import "./main.css";
 import createEngine, {
   DefaultLinkModel,
   DiagramModel,
+  DefaultNodeModel,
+  DefaultNodeFactory
 } from "@projectstorm/react-diagrams";
 import { JSCustomNodeFactory } from "./custom-node-js/JSCustomNodeFactory";
 import { JSCustomNodeModel } from "./custom-node-js/JSCustomNodeModel";
@@ -14,6 +16,7 @@ import { BodyWidget } from "./BodyWidget";
 
   // register the two engines
   engine.getNodeFactories().registerFactory(new JSCustomNodeFactory());
+  engine.getNodeFactories().registerFactory(new DefaultNodeFactory());
 
   // create a diagram model
   const model = new DiagramModel();
@@ -30,6 +33,16 @@ import { BodyWidget } from "./BodyWidget";
   // node2.nameNode("Node 2");
   // node2.provideDescription("Description node 2");
   node2.setPosition(900, 150);
+
+  // const node1 = new DefaultNodeModel();
+  // // node1.nameNode("Node 1");
+  // // node1.provideDescription("Description node 2");
+  // node1.setPosition(150, 300);
+
+  // const node2 = new DefaultNodeModel();
+  // // node2.nameNode("Node 2");
+  // // node2.provideDescription("Description node 2");
+  // node2.setPosition(900, 150);
 
 
   // 3-C) link the 2 nodes together
