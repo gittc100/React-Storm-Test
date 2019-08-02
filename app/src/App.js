@@ -1,18 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import SimpleExample from "./components/simpleExample";
-// import CustomExample from "./components/custom2/index.tsx";
+import CustomExample from "./main.js";
 
 function App() {
   return (
     <div className="App">
-      <div className="seperator">
+      {/* <div className="seperator">
         <SimpleExample/>
       </div>
-        <div className="seperator">
-        {/* <CustomExample/> */}
-        </div>
+        <div className="seperator"> */}
+        <CustomExample />
+        {/* </div> */}
     </div>
   );
 }
