@@ -4,12 +4,7 @@ import "./main.css";
 import createEngine, {
   DiagramModel,
   DefaultNodeFactory,
-  DefaultLinkFactory,
-  DefaultLinkModel,
-  DefaultLinkPointWidget,
-  DefaultLinkSegmentWidget,
-  DefaultLinkWidget,
-  DefaultPortModel
+  DefaultLinkFactory
 } from "@projectstorm/react-diagrams";
 import { JSCustomNodeFactory } from "./custom-node-js/JSCustomNodeFactory";
 import { JSCustomNodeModel } from "./custom-node-js/JSCustomNodeModel";
