@@ -58,17 +58,6 @@ export class JSCustomNodeModel extends NodeModel {
     );
   }
 
-  // removePort(port) {
-  //   //clear the parent node reference
-  //   if (port.name) {
-  //     _.forEach(port.getLinks(), link => {
-  //       link.remove();
-  //     });
-  //     port.name.setParent(null);
-  //     delete port.name;
-  //   }
-  // }
-
   removePort(port) {
     console.log("port", port);
     console.log("this.ports", this.ports);

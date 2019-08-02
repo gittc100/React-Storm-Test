@@ -54,7 +54,7 @@ export class JSCustomNodeWidget extends React.Component {
     });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = (event, countName) => {
     var val = this.state[event.target.name];
     if (val) {
       if (event.target.name === "description") {
@@ -83,15 +83,16 @@ export class JSCustomNodeWidget extends React.Component {
         for (let key in obj) {
           if (obj[key].id === id) {
             obj[key].label = this.state[event.target.name];
+            // obj[key].number = this.state[countName];
           }
         }
       }
     }
   }
 
-  handleKeyDown = (event) => {
+  handleKeyDown = (event, countName) => {
     if (event.which === this.ENTER_KEY) {
-      this.handleSubmit(event);
+      this.handleSubmit(event, countName);
     }
   }
 
@@ -109,16 +110,26 @@ export class JSCustomNodeWidget extends React.Component {
 
   subMenuGenerator = () => {
 		let obj = this.props.node.ports;
-		let menus = [];
+    let menus = [];
+    let count = "00";
     for (let key in obj) {
       if (obj[key].options.in === false) {
+        count = (Number(count) + 1).toString();
+        if(count.length < 2){
+          count = 0 + count + ".";
+        }else{
+          count = count + ".";
+        }
+        console.log("count",count);
 				let id = obj[key].options.id;
-				let mod = id + "a";
+        let mod = id + "a";
+        let countName = count + mod;
         if(this.state[id] === undefined){
           this.setState({
             ...this.state,
             [id]: false,
-            [mod]: obj[key].options.label
+            [mod]: obj[key].options.label,
+            [countName]: count
           });
         }
         menus.push(
@@ -126,7 +137,7 @@ export class JSCustomNodeWidget extends React.Component {
             <h2
               className={this.state[id] ? "hidden" : ""}
               onDoubleClick={()=>this.handleEdit(mod)}>
-              {this.state[mod]}
+              {this.state[countName]} {this.state[mod]}
             </h2>
             <input
               name={mod}
@@ -134,7 +145,9 @@ export class JSCustomNodeWidget extends React.Component {
               className={this.state[id] ? "" : "hidden"}
               value={this.state[mod]}
               onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
+              onKeyDown={(event)=>{
+                this.handleKeyDown(event, countName)
+                }}
               onKeyUp={(event) => {
               event.stopPropagation();
             }}
