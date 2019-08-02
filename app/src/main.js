@@ -3,7 +3,13 @@ import * as React from "react";
 import "./main.css";
 import createEngine, {
   DiagramModel,
-  DefaultNodeFactory
+  DefaultNodeFactory,
+  DefaultLinkFactory,
+  DefaultLinkModel,
+  DefaultLinkPointWidget,
+  DefaultLinkSegmentWidget,
+  DefaultLinkWidget,
+  DefaultPortModel
 } from "@projectstorm/react-diagrams";
 import { JSCustomNodeFactory } from "./custom-node-js/JSCustomNodeFactory";
 import { JSCustomNodeModel } from "./custom-node-js/JSCustomNodeModel";
@@ -15,38 +21,11 @@ import { BodyWidget } from "./BodyWidget";
   // register the two engines
   engine.getNodeFactories().registerFactory(new JSCustomNodeFactory());
   engine.getNodeFactories().registerFactory(new DefaultNodeFactory());
+  engine.getLinkFactories().registerFactory(new DefaultLinkFactory());
 
   // create a diagram model
   const model = new DiagramModel();
 
-  //####################################################
-  // now create two nodes of each type, and connect them
-
-  const node1 = new JSCustomNodeModel();
-  node1.nameNode("Node 1");
-  node1.provideDescription("Description node 2");
-  node1.setPosition(400, 50);
-
-  // const node1 = new DefaultNodeModel();
-  // // node1.nameNode("Node 1");
-  // // node1.provideDescription("Description node 2");
-  // node1.setPosition(150, 300);
-
-  // const node2 = new DefaultNodeModel();
-  // // node2.nameNode("Node 2");
-  // // node2.provideDescription("Description node 2");
-  // node2.setPosition(900, 150);
-
-
-  // 3-C) link the 2 nodes together
-  // const link1 = new DefaultLinkModel();
-  // link1.setSourcePort(node1.getPort("out"));
-
-
-  // 4) add the models to the root graph
-  model.addAll(node1);
-
-	
   // install the model into the engine
   engine.setDiagramModel(model);
 	
