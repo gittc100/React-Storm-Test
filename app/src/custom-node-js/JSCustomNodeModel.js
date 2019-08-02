@@ -3,6 +3,7 @@ import {
   NodeModel,
   Toolkit
 } from "@projectstorm/react-diagrams";
+import * as _ from "lodash";
 
 export class JSCustomNodeModel extends NodeModel {
   constructor(options = {}) {
@@ -55,5 +56,31 @@ export class JSCustomNodeModel extends NodeModel {
         label: label
       })
     );
+  }
+
+  // removePort(port) {
+  //   //clear the parent node reference
+  //   if (port.name) {
+  //     _.forEach(port.getLinks(), link => {
+  //       link.remove();
+  //     });
+  //     port.name.setParent(null);
+  //     delete port.name;
+  //   }
+  // }
+
+  removePort(port) {
+    console.log("port", port);
+    console.log("this.ports", this.ports);
+    console.log(port.getName());
+    console.log(port.getLinks());
+    //clear the parent node reference
+    if (this.ports[port.getName()]) {
+      _.forEach(port.getLinks(), link => {
+        link.remove();
+      });
+      this.ports[port.getName()].setParent(null);
+      delete this.ports[port.getName()];
+    }
   }
 }

@@ -101,25 +101,10 @@ export class JSCustomNodeWidget extends React.Component {
   };
 
   deletePortAndLinks = (port) =>{
-    console.log("port.links", port);
     this.props.node.removePort(port);
     // this.props.node.serialize();
-
-    // let ports = this.props.node.ports;
-    // console.log("ports",ports);
-    // for (let port in ports) {
-    //   let links = port.links;
-    //   for (let link in links) {
-    //     let points = link.points;
-    //     for (let point in points) {
-    //       let x = point.getX();
-    //       let y = point.getY();
-    //       point.updateLocation({ x: x, y: y });
-    //     }
-    //   }
-    // }
-
-    this.forceUpdate();
+    this.props.engine.repaintCanvas();
+    // this.forceUpdate();
   }
 
   subMenuGenerator = () => {
@@ -150,6 +135,9 @@ export class JSCustomNodeWidget extends React.Component {
               value={this.state[mod]}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
+              onKeyUp={(event) => {
+              event.stopPropagation();
+            }}
             />
             <div onClick={()=>this.deletePortAndLinks(obj[key])}>
               <img src={TrashCan} alt="trash icon"/>
@@ -184,6 +172,9 @@ export class JSCustomNodeWidget extends React.Component {
             value={this.state.nodeTitle}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
+            onKeyUp={(event) => {
+              event.stopPropagation();
+            }}
           />
         </div>
 
@@ -204,6 +195,9 @@ export class JSCustomNodeWidget extends React.Component {
             value={this.state.description}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
+            onKeyUp={(event) => {
+              event.stopPropagation();
+            }}
           />
         </div>
 
